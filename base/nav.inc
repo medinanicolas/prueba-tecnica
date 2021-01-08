@@ -1,6 +1,3 @@
-/**
-* Plantilla de navegación con boostrap
-*/
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg py-4 ">
         <a class="navbar-brand" href="{% url 'onboardwebsite:index' %}">Gestión de Bodegas</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
