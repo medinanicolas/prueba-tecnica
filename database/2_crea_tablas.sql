@@ -38,10 +38,12 @@ CREATE TABLE IF NOT EXISTS producto(
 	stock_producto INT(9) UNSIGNED NOT NULL,
 	id_marca INT(5) UNSIGNED NOT NULL,
 	id_categoria INT(5) UNSIGNED NOT NULL,
+	id_bodega INT(5) UNSIGNED NOT NULL,
 	PRIMARY KEY(id_producto),
 	UNIQUE(nombre_producto),
 	FOREIGN KEY(id_marca) REFERENCES marca(id_marca),
-	FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria)
+	FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria),
+	FOREIGN KEY(id_bodega) REFERENCES bodega(id_bodega)
 )CHARSET=utf8, AUTO_INCREMENT = 100;
 CREATE TABLE IF NOT EXISTS tipo_usuario(
 	id_tipo_usuario INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -63,7 +65,11 @@ CREATE TABLE IF NOT EXISTS usuarios(
 	FOREIGN KEY(id_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario)
 )CHARSET=utf8, AUTO_INCREMENT=100;
 
-DELETE FROM tipo_usuario;
+/**
+* Estas lineas de código rellenan las tablas para poder loguearse
+* Si se ejecutan más de una vez puede dar error
+*/
+DELETE IGNORE FROM tipo_usuario;
 DELETE IGNORE FROM usuarios;
 INSERT INTO tipo_usuario VALUES(null, 'Administrador');
 INSERT INTO usuarios VALUES('11111111', '1', 'admin', md5('password'), 'Admin', 'Admin', null, (SELECT id_tipo_usuario FROM tipo_usuario WHERE nombre_tipo_usuario LIKE 'Administrador'));

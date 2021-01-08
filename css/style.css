@@ -1,0 +1,16 @@
+/**
+* Hoja de estilos en cascada base para el sistema
+*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url('../base/images/arch1.jpg'); 
+    background-size: cover;;
+}
+.main{
+    flex: 1;
+}
+.footer{
+    width: 100%;
+}

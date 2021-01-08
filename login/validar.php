@@ -4,7 +4,7 @@
  * 
  * incluye la configuración de la conexión a la base de datos
  */
-    include_once "../config/conexion.php";
+    require_once "../config/conexion.php";
 /**
  * Recibe los parametros desde el formulario de login
  */
@@ -54,7 +54,7 @@
              * Caso contratio vuelve al login nuevamente
              */
             if($user['id_tipo_usuario'] === $tipo_usuario['id_tipo_usuario']){
-                die(header('Location:../admin/'));
+                header('Location:../admin/');
             }else{
                 die(header('Location:index.php?error=usertype'));
             }
