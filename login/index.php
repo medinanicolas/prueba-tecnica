@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(isset($_SESSION['tipo_usuario'])){
+        if($_SESSION['tipo_usuario']==='Administrador'){
+            die(header('Location:../admin/'));
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

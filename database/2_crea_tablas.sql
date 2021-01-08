@@ -1,6 +1,12 @@
 
 /**
-* Se crean las tablas necesarias para el sistema base
+* Se crean las tablas y datos necesarios para el sistema base
+*
+* Creadas en ubuntu con usuario admin@localhost de mysql
+*
+* mysql -u admin -D gestion_bodegas -p < 2_crea_tablas.sql
+*
+* Password: p4ssw0rd
 *
 * Codificación utf8 y un inicio de las ID en 100
 * Nombres únicos en cada tabla donde sea necesario
@@ -56,3 +62,9 @@ CREATE TABLE IF NOT EXISTS usuarios(
 	UNIQUE(alias_usuario),
 	FOREIGN KEY(id_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario)
 )CHARSET=utf8, AUTO_INCREMENT=100;
+
+DELETE FROM tipo_usuario;
+DELETE IGNORE FROM usuarios;
+INSERT INTO tipo_usuario VALUES(null, 'Administrador');
+INSERT INTO usuarios VALUES('11111111', '1', 'admin', md5('password'), 'Admin', 'Admin', null, (SELECT id_tipo_usuario FROM tipo_usuario WHERE nombre_tipo_usuario LIKE 'Administrador'));
+

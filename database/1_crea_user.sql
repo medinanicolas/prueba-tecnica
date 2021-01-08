@@ -1,5 +1,9 @@
 /**
 *  Se crea un usuario para administrar la base de datos
+*
+* Creado en ubuntu con usuario root
+*
+* sudo mysql -u root < 1_crea_user.sql
 */
 DROP USER IF EXISTS 'admin'@'localhost';
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'p4ssw0rd';

@@ -41,7 +41,6 @@
             }else{
                 $tipo_usuario = $resultado->fetch_assoc();
             }
-            echo $tipo_usuario['id_tipo_usuario'];
             $_SESSION['rut_usuario'] = $user['rut_usuario'] . '-' . $user['dv_usuario'];
             $_SESSION['alias_usuario'] = $user['alias_usuario'];
             $_SESSION['nombre_usuario'] = $user['nombre_usuario'] . ' ' . $user['p_apellido_usuario'];
@@ -52,7 +51,7 @@
              * En este caso Administrador es el único rol existente
              * por lo tanto se redirige a la gestión de bodegas
              * 
-             * Caso contratio vuelve al login nuevamente 
+             * Caso contratio vuelve al login nuevamente
              */
             if($user['id_tipo_usuario'] === $tipo_usuario['id_tipo_usuario']){
                 die(header('Location:../admin/'));
@@ -60,8 +59,7 @@
                 die(header('Location:index.php?error=usertype'));
             }
         }else{
-            echo 'Error: No existe el usuario';
-            exit;
+            echo die('Error: No existe el usuario o la contraseña es invalida');
         }
     }
 ?>

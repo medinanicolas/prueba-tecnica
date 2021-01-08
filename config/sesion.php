@@ -1,0 +1,10 @@
+<?php
+    session_start();
+    if(isset($_SESSION['tipo_usuario'])){
+        if($_SESSION['tipo_usuario']!='Administrador'){
+            die(header('Location:../login/'));
+        }
+    }else{
+        die(header('Location:../login/'));
+    }
+?>
