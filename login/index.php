@@ -1,4 +1,9 @@
 <?php
+/**
+ * Comprobación de privilegios
+ * 
+ * Si el usuario ya ha iniciado sesión no se le piden nuevamente las credenciales
+ */
     session_start();
     if(isset($_SESSION['tipo_usuario'])){
         if($_SESSION['tipo_usuario']==='Administrador'){
@@ -12,11 +17,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Identificación</title>
-    <?php 
-    /**
-     * integración de boostrap y sus componentes escenciales
-     */
-    include_once '../base/header.inc'; ?>
+    <!-- Header -->
+    <?php include_once '../base/header.inc'; ?>
 </head>
 <body style="background-image: url('../base/images/arch1.jpg'); background-size: cover">     
 <div class="container pt-5">
@@ -24,11 +26,12 @@
         <div class="col-7 px-0">
             <h1 class="text-center">GESTION DE BODEGA</h1>
             <h5 class="text-center" >BIENVENIDO</h5>
+            <!-- Formulario de inicio de sesion -->
             <form action="validar.php" method="POST" class="form-group" enctype="application/x-www-form-urlencoded">
                 <label for="usuario">Ususario:</label>
                 <input type="text" class="form-control" placeholder="username" name="usuario">
 
-                <label for="password">Password:</label>
+                <label for="password">Contraseña:</label>
                 <input type="password" class="form-control" placeholder="password" name="password">
 
                 <input type="submit" class="btn btn-primary mt-3 float-right" value="Entrar">
@@ -36,10 +39,7 @@
         </div>
     </div>
     </div>
-    <?php
-    /**
-     * Plantilla footer
-     */
-    include_once '../base/footer.inc'; ?>
+    <!-- Footer -->
+    <?php include_once '../base/footer.inc'; ?>
 </body>
 </html>

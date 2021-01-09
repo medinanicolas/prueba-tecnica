@@ -40,10 +40,9 @@ CREATE TABLE IF NOT EXISTS producto(
 	id_categoria INT(5) UNSIGNED NOT NULL,
 	id_bodega INT(5) UNSIGNED NOT NULL,
 	PRIMARY KEY(id_producto),
-	UNIQUE(nombre_producto),
 	FOREIGN KEY(id_marca) REFERENCES marca(id_marca),
 	FOREIGN KEY(id_categoria) REFERENCES categoria(id_categoria),
-	FOREIGN KEY(id_bodega) REFERENCES bodega(id_bodega)
+	FOREIGN KEY(id_bodega) REFERENCES bodega(id_bodega) ON DELETE CASCADE
 )CHARSET=utf8, AUTO_INCREMENT = 100;
 CREATE TABLE IF NOT EXISTS tipo_usuario(
 	id_tipo_usuario INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,

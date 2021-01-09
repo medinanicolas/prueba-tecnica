@@ -7,9 +7,9 @@
     session_start();
     if(isset($_SESSION['tipo_usuario'])){
         if($_SESSION['tipo_usuario']!='Administrador'){
-            header('Location:../login/');
+            header('Location:http://localhost/login/');
         }
     }else{
-        header('Location:../login/');
+        header('Location:http://localhost/login/');
     }
 ?>
