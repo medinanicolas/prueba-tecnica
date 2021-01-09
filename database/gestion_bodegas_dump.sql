@@ -36,7 +36,7 @@ CREATE TABLE `bodega` (
   `direccion_bodega` varchar(100) NOT NULL,
   PRIMARY KEY (`id_bodega`),
   UNIQUE KEY `nombre_bodega` (`nombre_bodega`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `bodega` (
 
 LOCK TABLES `bodega` WRITE;
 /*!40000 ALTER TABLE `bodega` DISABLE KEYS */;
-INSERT INTO `bodega` VALUES (103,'Bodega #0','Direccion #123'),(104,'Bodega #2','Direccion #123');
+INSERT INTO `bodega` VALUES (100,'Bodega #1','Bodega #1');
 /*!40000 ALTER TABLE `bodega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `categoria` (
   `nombre_categoria` varchar(60) NOT NULL,
   PRIMARY KEY (`id_categoria`),
   UNIQUE KEY `nombre_categoria` (`nombre_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (101,'Tecnologia');
+INSERT INTO `categoria` VALUES (100,'TECNOLOGIA');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `marca` (
   `nombre_marca` varchar(60) NOT NULL,
   PRIMARY KEY (`id_marca`),
   UNIQUE KEY `nombre_marca` (`nombre_marca`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `marca` (
 
 LOCK TABLES `marca` WRITE;
 /*!40000 ALTER TABLE `marca` DISABLE KEYS */;
-INSERT INTO `marca` VALUES (108,'Apple'),(107,'Generico');
+INSERT INTO `marca` VALUES (101,'APPLE'),(100,'NIKE');
 /*!40000 ALTER TABLE `marca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,7 +122,7 @@ CREATE TABLE `producto` (
   CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_marca`) REFERENCES `marca` (`id_marca`),
   CONSTRAINT `producto_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`),
   CONSTRAINT `producto_ibfk_3` FOREIGN KEY (`id_bodega`) REFERENCES `bodega` (`id_bodega`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,8 +131,67 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (103,'iPad',999999990,'Tableta de alta calidad',300,108,101,103);
+INSERT INTO `producto` VALUES (100,'iPAD',99999999,'Tableta ligera y de alto rendimiento',2720,101,100,100);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registro_entrega`
+--
+
+DROP TABLE IF EXISTS `registro_entrega`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registro_entrega` (
+  `id_registro` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_producto` int unsigned NOT NULL,
+  `stock_antes` int unsigned NOT NULL,
+  `stock_saliente` int unsigned NOT NULL,
+  `stock_despues` int unsigned NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_registro`),
+  KEY `id_producto` (`id_producto`),
+  CONSTRAINT `registro_entrega_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro_entrega`
+--
+
+LOCK TABLES `registro_entrega` WRITE;
+/*!40000 ALTER TABLE `registro_entrega` DISABLE KEYS */;
+INSERT INTO `registro_entrega` VALUES (104,100,2710,10,2720,'2021-01-09 20:33:48');
+/*!40000 ALTER TABLE `registro_entrega` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registro_stock`
+--
+
+DROP TABLE IF EXISTS `registro_stock`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registro_stock` (
+  `id_registro` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_producto` int unsigned NOT NULL,
+  `stock_antes` int unsigned NOT NULL,
+  `stock_entrante` int unsigned NOT NULL,
+  `stock_despues` int unsigned NOT NULL,
+  `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_registro`),
+  KEY `id_producto` (`id_producto`),
+  CONSTRAINT `registro_stock_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro_stock`
+--
+
+LOCK TABLES `registro_stock` WRITE;
+/*!40000 ALTER TABLE `registro_stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registro_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -147,7 +206,7 @@ CREATE TABLE `tipo_usuario` (
   `nombre_tipo_usuario` varchar(15) NOT NULL,
   PRIMARY KEY (`id_tipo_usuario`),
   UNIQUE KEY `nombre_tipo_usuario` (`nombre_tipo_usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +215,7 @@ CREATE TABLE `tipo_usuario` (
 
 LOCK TABLES `tipo_usuario` WRITE;
 /*!40000 ALTER TABLE `tipo_usuario` DISABLE KEYS */;
-INSERT INTO `tipo_usuario` VALUES (100,'Administrador');
+INSERT INTO `tipo_usuario` VALUES (102,'Administrador');
 /*!40000 ALTER TABLE `tipo_usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +248,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('11111111','1','admin','5f4dcc3b5aa765d61d8327deb882cf99','Admin','Admin',NULL,100);
+INSERT INTO `usuarios` VALUES ('11111111','1','admin','5f4dcc3b5aa765d61d8327deb882cf99','Admin','Admin',NULL,102);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -202,4 +261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-09  7:09:30
+-- Dump completed on 2021-01-09 17:41:56
