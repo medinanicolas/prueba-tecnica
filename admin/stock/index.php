@@ -64,8 +64,17 @@
             <form action="." method="POST" enctype="application/x-www-form-urlencoded">
 
                 <label for="id_producto">Código Producto:</label>
-                <input type="text" class="form-control" placeholder="ej. 100" name="id_producto">
-
+                <?php 
+                /**
+                 * En caso de venir desde 'Productos' se asigna automaticamente
+                 */
+                if(isset($_GET['id'])){
+                    $id = $_GET['id'];
+                    echo '<input type="text" class="form-control" value="'.$id.'" name="id_producto" readonly>';
+                }else{
+                    echo '<input type="text" class="form-control" placeholder="ej. 100" name="id_producto">';
+                }
+                ?>
                 <label for="stock_producto">Stock Entrante:</label>
                 <input type="text" class="form-control" placeholder="ej. 1000" name="stock_producto">
 
