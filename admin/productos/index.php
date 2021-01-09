@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-6">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
     <!-- Header -->
@@ -20,7 +20,7 @@
     <!-- Barra de Navegación -->
     <?php include_once '../../base/nav.inc'; ?>
     <!-- Contenido -->
-    <div class="container pt-5">
+    <div class="container p-0 pt-5">
     <div class="row justify-content-center px-5 pt-5 bg-light">
         <div class="col-6 p-0">
         <h1 class="text-center">Productos</h1>   
@@ -51,9 +51,9 @@
             </form>
         </div> 
         <div class="col-6">
+            <h5>Código producto:</h5>
             <form action="" method="POST" class="form-inline">
                 <!-- Formulario Búsqueda por Código -->
-                <h5>Código Producto:</h5>
                 <label for="busqueda_codigo">
                 <input name="busqueda_codigo" class="form-control" placeholder="ej. 100">
                 <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-search"></i> Búsqueda</button>
@@ -101,7 +101,7 @@
                             if($resultado->num_rows > 0){
                                 echo '<table class="table table-striped table-hover">
                                     <thead class="thead-dark">
-                                    <tr">
+                                    <tr>
                                         <th class="text-center" scope="col">Codigo</th>
                                         <th class="text-center" scope="col">Nombre</th>
                                         <th class="text-center" scope="col">Descripcion</th>
@@ -132,7 +132,7 @@
                                             <a class='btn btn-success text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
                                             ><i class='fas fa-boxes'></i></a>
                                             <a class='btn btn-primary text-white' href='http://localhost/admin/entregas/?id=".$producto['id_producto']."'
-                                            ><i class='fas fa-trick-loading'></i></a>
+                                            ><i class='fas fa-truck-loading'></i></a>
                                         </td>
                                         </tr>
                                         ";
