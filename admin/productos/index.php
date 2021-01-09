@@ -211,7 +211,7 @@
                                         ><i class='fas fa-edit'></i></a>
                                     <a class='btn btn-success text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
                                     ><i class='fas fa-boxes'></i></a>
-                                    <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                    <a class='btn btn-primary text-white' href='http://localhost/admin/entregas/?id=".$producto['id_producto']."'
                                             ><i class='fas fa-truck-loading'></i></a>
                                 </td>
                                 </tr>
@@ -281,7 +281,7 @@
                                         ><i class='fas fa-edit'></i></a>
                                     <a class='btn btn-success text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
                                     ><i class='fas fa-boxes'></i></a>
-                                    <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                    <a class='btn btn-primary text-white' href='http://localhost/admin/entregas/?id=".$producto['id_producto']."'
                                             ><i class='fas fa-truck-loading'></i></a>
                                 </td>
                                 </tr>
@@ -307,7 +307,7 @@
     <script>function eliminarProducto(id){
                 Swal.fire({
                     title: "¿Está seguro?",
-                    text:"Se eliminiará el producto seleccionado",
+                    text:"Se eliminiará el producto y todos sus registros",
                     icon: "question",
                     showCancelButton: true,
                     cancelbuttonText: "Cancelar",
