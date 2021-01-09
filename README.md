@@ -1,7 +1,7 @@
 # Prueba pŕactica
 Implementación de Apache2, PHP7 y MySQL para módulo básico de gestión de bodegas
 
-##Librerías
+## Librerías
 - Boostrap4
 - Popper
 - jQuery
