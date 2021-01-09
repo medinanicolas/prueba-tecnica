@@ -52,6 +52,7 @@
         </div> 
         <div class="col-6">
             <form action="" method="POST" class="form-inline">
+                <!-- Formulario Búsqueda por Código -->
                 <h5>Código Producto:</h5>
                 <label for="busqueda_codigo">
                 <input name="busqueda_codigo" class="form-control" placeholder="ej. 100">
@@ -144,9 +145,15 @@
                         }
                     }
                 }else{
+                    /**
+                     * en caso de error arroja mensaje
+                     */
                     die(header('Location:http://localhost/admin/productos/?message=error'));
                 }
             }elseif(isset($_POST['bodega']) && $_POST['bodega']==="1"){
+                /**
+                 * Selecciona todos los productos en la base de datos
+                 */
                 $sql = "SELECT p.id_producto,
                                 p.nombre_producto,
                                 p.precio_producto,
@@ -213,6 +220,9 @@
                     }
                 }
             }elseif(isset($_POST['busqueda_codigo'])){
+                /**
+                 * Búsqueda por código de producto
+                 */
                 $id_producto = $_POST['busqueda_codigo'];
                 $sql = "SELECT p.id_producto,
                                 p.nombre_producto,

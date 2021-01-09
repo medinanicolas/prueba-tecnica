@@ -5,6 +5,9 @@
  * Al hacer clic en 'OK' se redirige a la página actual sin el mensage GET
  */
     if($_GET['message']==='success'){
+        /**
+         * Mensaje de éxito
+         */
         echo "<script>
             Swal.fire({
             title:'Enhorabuena!',
@@ -18,6 +21,9 @@
             })
         </script>";
     }elseif($_GET['message']==='error'){
+        /**
+         * Mensaje de error general
+         */
         echo "<script>
             Swal.fire({
             title:'Oops..',
@@ -31,6 +37,9 @@
             })
         </script>";
     }elseif($_GET['message']==='error-db'){
+        /**
+         * Mensaje de error con la base de datos
+         */
         echo "<script>
             Swal.fire({
             title:'Oops..',
@@ -44,6 +53,9 @@
             })
         </script>";
     }elseif($_GET['message']==='not-found'){
+        /**
+         * Mensaje de sin resultados para la consulta de la base de datos
+         */
         echo "<script>
             Swal.fire({
             title:'Oops...',
@@ -57,6 +69,9 @@
             })
         </script>";
     }elseif($_GET['message']==='stock'){
+        /**
+         * mensaje para el stock y entregas
+         */
         echo "<script>
             Swal.fire({
             title:'Oops...',

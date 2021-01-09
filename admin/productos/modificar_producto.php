@@ -166,7 +166,7 @@
                                     <a class="text-light btn btn-danger mt-3 float-left" href="http://localhost/admin/productos/"
                                     ><i class="fas fa-window-close"></i> Cancelar</a>';
                             }else{
-                                #PONER AQUI UN 404 para SA
+                                die(header('Location:http://localhost/admin/productos/?message=not-found'));    
                             }
                         }else{
                             die(header('Location:http://localhost/admin/productos/?message=error'));
