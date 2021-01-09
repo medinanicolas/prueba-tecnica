@@ -1,4 +1,3 @@
-
 /**
 * Se crean las tablas y datos necesarios para el sistema base
 *

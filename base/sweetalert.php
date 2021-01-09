@@ -13,7 +13,7 @@
             })
             .then(function (result) {
                 if (result.isConfirmed) {
-                    window.location.href = '.'
+                    window.location.href = window.location.pathname
                 }
             })
         </script>";
@@ -26,7 +26,7 @@
             })
             .then(function (result) {
                 if (result.isConfirmed) {
-                    window.location.href = '.'
+                    window.location.href = window.location.pathname
                 }
             })
         </script>";

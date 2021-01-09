@@ -18,9 +18,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="http://localhost/admin/productos"><i class="fas fa-box"></i> PRODUCTOS</a>
             </li>
+            <!--
             <li class="nav-item">
                 <a class="nav-link" href="http://localhost/admin/entregas/"><i class="fas fa-truck-loading"></i> ENTREGAS</a>
             </li>
+            -->
             <li class="nav-item">
                 <a class="nav-link" href="http://localhost/admin/stock/"><i class="fas fa-boxes"></i> STOCK</a>
             </li>

@@ -27,16 +27,18 @@
     include_once '../base/nav.inc' ?>
     <!-- Contenido -->
     <div class="container pt-5">
-    <div class="row justify-content-center p-5 mt-5 bg-light">
-        <div class="col-6 p-0">
+    <div class="row justify-content-center py-5 mt-5 bg-light">
+        <div class="col-5 p-0">
             <h1 class="text-center mb-5">Panel de administración</h1>
             <ul class="list-group list-group-horizontal justify-content-center">
                 <li class="list-group-item"><a class="btn btn-white" href="bodega/"><img width="100px" 
                     src="http://localhost/base/images/bodega.png"/><p class="text-center text-primary">Bodegas</p></a></li>
                 <li class="list-group-item"><a class="btn btn-white" href="productos/"><img width="100px" 
                     src="http://localhost/base/images/caja.png"/><p class="text-center text-primary">Productos</p></a></li>
-                <li class="list-group-item"><a class="btn btn-white" href=""><img width="100px" 
+                <!--
+                <li class="list-group-item bg-secondary"><a class="btn btn-secondary disabled" href=""><img width="100px" 
                     src="http://localhost/base/images/entrega.png"/><p class="text-center text-primary">Entregas</p></a></li>
+                -->
                 <li class="list-group-item"><a class="btn btn-white" href=""><img width="100px" 
                     src="http://localhost/base/images/stock.png"/><p class="text-center text-primary">Stock</p></a></li>
                 <li class="list-group-item"><a class="btn btn-white" href=""><img width="100px" 
@@ -46,6 +48,6 @@
     </div>
     </div>
     <!-- Footer -->
-    <?php     include_once '../base/footer.inc'; ?>
+    <?php include_once '../base/footer.inc'; ?>
 </body>
 </html>

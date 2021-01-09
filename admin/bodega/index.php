@@ -62,7 +62,7 @@
                                 <a onclick=eliminarBodega(". $bodega['id_bodega'] .") class='btn btn-danger text-white' href='#'>
                                     <i class='far fa-minus-square'></i>
                                 </a>
-                                <a class='btn btn-warning text-white' href=''
+                                <a class='btn btn-warning text-white' href='./modificar_bodega.php?id=". $bodega['id_bodega']."'
                                     ><i class='far fa-edit'></i></a>
                             </td>
                             </tr>
