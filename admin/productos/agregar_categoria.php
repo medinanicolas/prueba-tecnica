@@ -24,7 +24,7 @@
             /**
              * En caso contratio termina la operación con un mensaje de error
              */
-            die(header('Location:http://localhost/admin/productos/agregar_producto.php?message=error'));
+            die(header('Location:http://localhost/admin/productos/agregar_producto.php?message=error-db'));
         }
     }
 ?>
@@ -48,7 +48,7 @@
             <!-- Formulario POST para agregar categorias -->
             <form action="./agregar_categoria.php" method="POST" class="form-group" enctype="application/x-www-form-urlencoded">
                 <label for="nombre_categoria">Nombre Categoría:</label>
-                <input type="text" class="form-control" placeholder="Categoria de Ejemplo" name="nombre_categoria">
+                <input type="text" class="form-control" placeholder="ej. Categoria de Ejemplo" name="nombre_categoria">
 
                 <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-plus-square"></i> Agregar</button>
                 <a class="text-light btn btn-danger mt-3 float-left" href="http://localhost/admin/productos/agregar_producto.php"

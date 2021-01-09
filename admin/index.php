@@ -35,14 +35,14 @@
                     src="http://localhost/base/images/bodega.png"/><p class="text-center text-primary">Bodegas</p></a></li>
                 <li class="list-group-item"><a class="btn btn-white" href="productos/"><img width="100px" 
                     src="http://localhost/base/images/caja.png"/><p class="text-center text-primary">Productos</p></a></li>
-                <!--
-                <li class="list-group-item bg-secondary"><a class="btn btn-secondary disabled" href=""><img width="100px" 
+                <li class="list-group-item"><a class="btn btn-white" href="entregas/"><img width="100px" 
                     src="http://localhost/base/images/entrega.png"/><p class="text-center text-primary">Entregas</p></a></li>
-                -->
-                <li class="list-group-item"><a class="btn btn-white" href=""><img width="100px" 
+                <li class="list-group-item"><a class="btn btn-white" href="stock/"><img width="100px" 
                     src="http://localhost/base/images/stock.png"/><p class="text-center text-primary">Stock</p></a></li>
+                <!--
                 <li class="list-group-item"><a class="btn btn-white" href=""><img width="100px" 
                     src="http://localhost/base/images/usuario.png"/><p class="text-center text-primary">Usuarios</p></a></li>
+                -->
             </ul>
         </div>
     </div>

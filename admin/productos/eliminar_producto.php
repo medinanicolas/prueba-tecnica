@@ -16,7 +16,7 @@
         if($resultado = $conexion->query($sql)){
             die(header('Location:http://localhost/admin/productos/?message=success'));
         }else{
-            die(header('Location:http://localhost/admin/productos/?message=error'));
+            die(header('Location:http://localhost/admin/productos/?message=error-db'));
         }
     }
 ?>

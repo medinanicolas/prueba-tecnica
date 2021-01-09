@@ -25,7 +25,7 @@
         <div class="col-12 p-0">
             <h1 class="text-center mb-5">Bodegas</h1>
             <!-- Ejemplo de boton con integración de FontAwesome -->
-            <a class="btn btn-success my-2" href="http://localhost/admin/bodega/agregar_bodega.php"><i class="fas fa-plus-square"></i> Agregar</a>
+            <a class="btn btn-success my-2" href="http://localhost/admin/bodega/agregar_bodega.php"><i class="fas fa-plus-circle"></i> Agregar</a>
             <?php 
             /**
              * Configuración SQL
@@ -36,7 +36,7 @@
              */
             $sql = "SELECT * FROM bodega";
             if(!$resultado = $conexion->query($sql)){
-                die(header('Location:http://localhost/admin/bodega/?message=error'));
+                die(header('Location:http://localhost/admin/bodega/?message=error-db'));
             }else{
                 /**
                  * Si es que encuentra resultados los lista en tabla
@@ -60,10 +60,10 @@
                             <td class='text-center'>" . $bodega['direccion_bodega'] . "</td>
                             <td class='text-center'>
                                 <a onclick=eliminarBodega(". $bodega['id_bodega'] .") class='btn btn-danger text-white' href='#'>
-                                    <i class='far fa-minus-square'></i>
+                                    <i class='fas fa-trash'></i>
                                 </a>
                                 <a class='btn btn-warning text-white' href='./modificar_bodega.php?id=". $bodega['id_bodega']."'
-                                    ><i class='far fa-edit'></i></a>
+                                    ><i class='fas fa-edit'></i></a>
                             </td>
                             </tr>
                             ";
@@ -75,7 +75,7 @@
                     /**
                      * De lo contrario informa de la no existencia de bodegas
                      */
-                    echo "<h2 class='text-muted'>No se han encontrado resultados</h2>";
+                    echo "<h6 class='text-muted'>No se han encontrado resultados</h6>";
                 }
             }
             ?>

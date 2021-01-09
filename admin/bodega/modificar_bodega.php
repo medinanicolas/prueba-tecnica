@@ -71,11 +71,11 @@
                             echo '<label for="direccion_bodega">Dirección Bodega:</label>';
                             echo '<input type="text" class="form-control" value="'.$bodega['direccion_bodega'].'" name="direccion_bodega">';
                             }else{
-                                die(header('Location:http://localhost/admin/bodega/?message=error'));
+                                die(header('Location:http://localhost/admin/bodega/?message=error-db'));
                             }
                         }
                     }else{
-                        die(header('Location:http://localhost/admin/bodega/?message=error'));
+                        die(header('Location:http://localhost/admin/bodega/?message=error-db'));
                     }
                 ?>
                 <button type="submit" class="text-light btn btn-warning mt-3 float-right"><i class="fas fa-edit"></i> Modificar</button>

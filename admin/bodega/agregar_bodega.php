@@ -25,7 +25,7 @@
             /**
              * En caso contratio termina la operación con un mensaje de error
              */
-            die(header('Location:http://localhost/admin/bodega/?message=error'));
+            die(header('Location:http://localhost/admin/bodega/?message=error-db'));
         }
     }
 ?>
@@ -49,12 +49,12 @@
             <!-- Formulario POST para agregar bodegas -->
             <form action="./agregar_bodega.php" method="POST" class="form-group" enctype="application/x-www-form-urlencoded">
                 <label for="nombre_bodega">Nombre Bodega:</label>
-                <input type="text" class="form-control" placeholder="Bodega de Ejemplo #1" name="nombre_bodega">
+                <input type="text" class="form-control" placeholder="ej. Bodega de Ejemplo #1" name="nombre_bodega">
 
                 <label for="direccion_bodega">Dirección Bodega:</label>
-                <input type="text" class="form-control" placeholder="Dirección de ejemplo #123" name="direccion_bodega">
+                <input type="text" class="form-control" placeholder="ej. Dirección de ejemplo #123" name="direccion_bodega">
 
-                <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-plus-square"></i> Agregar</button>
+                <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-plus-circle"></i> Agregar</button>
                 <a class="text-light btn btn-danger mt-3 float-left" href="http://localhost/admin/bodega/"
                 ><i class="fas fa-window-close"></i> Cancelar</a>
             </form>

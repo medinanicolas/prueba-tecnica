@@ -37,7 +37,7 @@
             /**
              * En caso contratio termina la operación con un mensaje de error
              */
-            die(header('Location:http://localhost/admin/productos/agregar_producto.php?message=error'));
+            die(header('Location:http://localhost/admin/productos/agregar_producto.php?message=error-db'));
         }
     }
 ?>
@@ -81,12 +81,6 @@
                     <option value="0" selected>Seleccione...</option>
                 </select>
 
-                <label for="nombre_producto">Nombre Producto:</label>
-                <input type="text" class="form-control" placeholder="Producto de Ejemplo 1" name="nombre_producto">
-
-                <label for="descripcion_producto">Descripción Producto:</label>
-                <input type="text" class="form-control" placeholder="Descripción de ejemplo" name="descripcion_producto">
-
                 <label for="marca_producto">Marca Producto:</label>
                 <a href="./agregar_marca.php" class="float-right">agregar marca</a>
                 <select name="marca_producto" class="form-control">
@@ -127,14 +121,20 @@
                     <option value="0" selected>Seleccione...</option>
                 </select>
 
+                <label for="nombre_producto">Nombre Producto:</label>
+                <input type="text" class="form-control" placeholder="ej. Producto de Ejemplo 1" name="nombre_producto">
+
+                <label for="descripcion_producto">Descripción Producto:</label>
+                <input type="text" class="form-control" placeholder="ej. Descripción de ejemplo" name="descripcion_producto">
+
                 <label for="precio_producto">Precio Producto:</label>
-                <input type="text" class="form-control" placeholder="19990" name="precio_producto">
+                <input type="text" class="form-control" placeholder="ej. 19990" name="precio_producto">
 
-                <label for="stock_producto">Descripción Producto:</label>
-                <input type="text" class="form-control" placeholder="3000" name="stock_producto">
+                <label for="stock_producto">Stock Producto:</label>
+                <input type="text" class="form-control" placeholder="ej. 3000" name="stock_producto">
 
 
-                <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-plus-square"></i> Agregar</button>
+                <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-plus-circle"></i> Agregar</button>
                 <a class="text-light btn btn-danger mt-3 float-left" href="http://localhost/admin/productos/"
                 ><i class="fas fa-window-close"></i> Cancelar</a>
             </form>

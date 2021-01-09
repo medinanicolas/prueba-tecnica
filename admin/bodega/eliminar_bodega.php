@@ -16,7 +16,7 @@
         if($resultado = $conexion->query($sql)){
             die(header('Location:http://localhost/admin/bodega/?message=success'));
         }else{
-            die(header('Location:http://localhost/admin/bodega/?message=error'));
+            die(header('Location:http://localhost/admin/bodega/?message=error-db'));
         }
     }
 ?>
