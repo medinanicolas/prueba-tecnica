@@ -12,7 +12,7 @@
      */
     if(isset($_POST['id_producto']) && isset($_POST['stock_producto'])){
         if($_POST['stock_producto'] == 0){
-            die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+            die(header('Location:http://localhost/admin/stock/?message=error-db'));
             exit;
         }
         $id_producto = $_POST['id_producto'];
@@ -24,7 +24,7 @@
                 $stock_entrante = $_POST['stock_producto'];
                 $stock_total = $stock_atual + $stock_entrante;
                 if($stock_total<0){
-                    die(header('Location:http://localhost/admin/entregas/?message=stock'));
+                    die(header('Location:http://localhost/admin/stock/?message=stock'));
                 }else{
                     $sql = "UPDATE producto SET stock_producto = '$stock_total' WHERE id_producto = '$id_producto'";
                     if($resultado = $conexion->query($sql)){
@@ -33,25 +33,25 @@
                          * que será interceptado por 'sweetalert.php', el que enviará una alerta 
                          * con el mensaje correspondiente
                          */
-                        #die(header('Location:http://localhost/admin/entregas/?message=success'));
+                        #die(header('Location:http://localhost/admin/stock/?message=success'));
                     }else{
                         /**
                          * En caso contratio termina la operación con un mensaje de error
                          */
-                        die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+                        die(header('Location:http://localhost/admin/stock/?message=error-db'));
                     }
-                    $sql = "INSERT INTO registro_entrega VALUES(null, '$id_producto', '$stock_atual', '$stock_entrante', '$stock_total', now())";
+                    $sql = "INSERT INTO registro_stock VALUES(null, '$id_producto', '$stock_atual', '$stock_entrante', '$stock_total', now())";
                     if($resultado = $conexion->query($sql)){
-                        die(header('Location:http://localhost/admin/entregas/?message=success'));
+                        die(header('Location:http://localhost/admin/stock/?message=success'));
                     }else{
-                        die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+                        die(header('Location:http://localhost/admin/stock/?message=error-db'));
                     }
                 }
             }else{
-                die(header('Location:http://localhost/admin/entregas/?message=not-found'));
+                die(header('Location:http://localhost/admin/stock/?message=not-found'));
             }
         }else{
-            die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+            die(header('Location:http://localhost/admin/stock/?message=error-db'));
         }
     }
 ?>
@@ -101,11 +101,11 @@
                             echo '<button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-box"></i> Actualizar</button>';
                             echo '</form>';
                         }else{
-                            die(header('Location:http://localhost/admin/entregas/?message=not-found'));   
+                            die(header('Location:http://localhost/admin/stock/?message=not-found'));   
                         }
                         
                     }else{
-                        die(header('Location:http://localhost/admin/entregas/?message=error-db'));   
+                        die(header('Location:http://localhost/admin/stock/?message=error-db'));   
                     }
                 }else{
                     echo '<h4 class="text-center text-muted">No se ha seleccionado ningun producto</h4>';
@@ -117,7 +117,7 @@
     /**
      * Lista los registros, de no haber entonces no inserta código
      */
-    $sql = "SELECT * FROM registro_entrega";
+    $sql = "SELECT * FROM registro_stock";
     if($resultado = $conexion->query($sql)){
         if($resultado->num_rows>0){
             echo '<div class="row justify-content-center p-5 border bg-light">';

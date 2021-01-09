@@ -131,7 +131,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (100,'iPAD',99999999,'Tableta ligera y de alto rendimiento',2720,101,100,100);
+INSERT INTO `producto` VALUES (100,'iPAD',99999999,'Tableta ligera y de alto rendimiento',2730,101,100,100);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +152,7 @@ CREATE TABLE `registro_entrega` (
   PRIMARY KEY (`id_registro`),
   KEY `id_producto` (`id_producto`),
   CONSTRAINT `registro_entrega_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,7 +161,7 @@ CREATE TABLE `registro_entrega` (
 
 LOCK TABLES `registro_entrega` WRITE;
 /*!40000 ALTER TABLE `registro_entrega` DISABLE KEYS */;
-INSERT INTO `registro_entrega` VALUES (104,100,2710,10,2720,'2021-01-09 20:33:48');
+INSERT INTO `registro_entrega` VALUES (104,100,2710,10,2720,'2021-01-09 20:33:48'),(105,100,2720,10,2730,'2021-01-09 21:49:55'),(106,100,2730,30,2700,'2021-01-09 21:50:08');
 /*!40000 ALTER TABLE `registro_entrega` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +182,7 @@ CREATE TABLE `registro_stock` (
   PRIMARY KEY (`id_registro`),
   KEY `id_producto` (`id_producto`),
   CONSTRAINT `registro_stock_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,6 +191,7 @@ CREATE TABLE `registro_stock` (
 
 LOCK TABLES `registro_stock` WRITE;
 /*!40000 ALTER TABLE `registro_stock` DISABLE KEYS */;
+INSERT INTO `registro_stock` VALUES (100,100,2700,30,2730,'2021-01-09 21:54:23');
 /*!40000 ALTER TABLE `registro_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-09 17:41:56
+-- Dump completed on 2021-01-09 18:55:02
