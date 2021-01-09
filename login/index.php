@@ -34,7 +34,9 @@
                 <label for="password">Contraseña:</label>
                 <input type="password" class="form-control" placeholder="password" name="password">
 
-                <input type="submit" class="btn btn-primary mt-3 float-right" value="Entrar">
+                <p class="text-muted text-center">username: admin | password: password</p>
+
+                <button type="submit" class="btn btn-primary mt-3 float-right"><i class="fas fa-sign-in-alt"></i> Entrar</button>
             </form>
         </div>
     </div>

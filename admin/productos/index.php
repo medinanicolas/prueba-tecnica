@@ -39,8 +39,9 @@
                     $sql = "SELECT * FROM bodega";
                     if($resultado = $conexion->query($sql)){
                         if($resultado->num_rows>0){
-                            $bodega = $resultado->fetch_assoc();
-                            echo "<option value='". $bodega['id_bodega']."'>",$bodega['nombre_bodega']."</option>";
+                            while($bodega = $resultado->fetch_assoc()){
+                                echo "<option value='". $bodega['id_bodega']."'>",$bodega['nombre_bodega']."</option>";
+                            }
                         }
                     }
                     ?>
