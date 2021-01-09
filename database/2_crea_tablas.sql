@@ -62,6 +62,26 @@ CREATE TABLE IF NOT EXISTS usuarios(
 	UNIQUE(alias_usuario),
 	FOREIGN KEY(id_tipo_usuario) REFERENCES tipo_usuario(id_tipo_usuario)
 )CHARSET=utf8, AUTO_INCREMENT=100;
+CREATE TABLE IF NOT EXISTS registro_stock(
+	id_registro INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+	id_producto INT(5) UNSIGNED NOT NULL,
+	stock_antes INT(9) UNSIGNED NOT NULL,
+	stock_entrante INT(9) UNSIGNED NOT NULL,
+	stock_despues INT(9) UNSIGNED NOT NULL,
+	fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id_registro),
+	FOREIGN KEY(id_producto) REFERENCES producto(id_producto)
+)CHARSET=utf8, AUTO_INCREMENT = 100;
+CREATE TABLE IF NOT EXISTS registro_entrega(
+	id_registro INT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+	id_producto INT(5) UNSIGNED NOT NULL,
+	stock_antes INT(9) UNSIGNED NOT NULL,
+	stock_saliente INT(9) UNSIGNED NOT NULL,
+	stock_despues INT(9) UNSIGNED NOT NULL,
+	fecha_registro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY(id_registro),
+	FOREIGN KEY(id_producto) REFERENCES producto(id_producto)
+)CHARSET=utf8, AUTO_INCREMENT = 100;
 
 /**
 * Estas lineas de código rellenan las tablas para poder loguearse

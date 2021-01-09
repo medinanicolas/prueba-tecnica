@@ -129,8 +129,10 @@
                                             </a>
                                             <a class='btn btn-warning text-white' href='modificar_producto.php?id=".$producto['id_producto']."'
                                                 ><i class='fas fa-edit'></i></a>
-                                            <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                            <a class='btn btn-success text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
                                             ><i class='fas fa-boxes'></i></a>
+                                            <a class='btn btn-primary text-white' href='http://localhost/admin/entregas/?id=".$producto['id_producto']."'
+                                            ><i class='fas fa-trick-loading'></i></a>
                                         </td>
                                         </tr>
                                         ";
@@ -207,8 +209,10 @@
                                     </a>
                                     <a class='btn btn-warning text-white' href='modificar_producto.php?id=".$producto['id_producto']."'
                                         ><i class='fas fa-edit'></i></a>
-                                    <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                    <a class='btn btn-success text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
                                     ><i class='fas fa-boxes'></i></a>
+                                    <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                            ><i class='fas fa-truck-loading'></i></a>
                                 </td>
                                 </tr>
                                 ";
@@ -275,8 +279,10 @@
                                     </a>
                                     <a class='btn btn-warning text-white' href='modificar_producto.php?id=".$producto['id_producto']."'
                                         ><i class='fas fa-edit'></i></a>
-                                    <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                    <a class='btn btn-success text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
                                     ><i class='fas fa-boxes'></i></a>
+                                    <a class='btn btn-primary text-white' href='http://localhost/admin/stock/?id=".$producto['id_producto']."'
+                                            ><i class='fas fa-truck-loading'></i></a>
                                 </td>
                                 </tr>
                                 ";
