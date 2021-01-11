@@ -1,30 +1,29 @@
-<?php 
-    /**
-     * Utiliza la sesion para comprobar privilegios
-     */
-    require_once '../../config/sesion.php';
-    /**
-     * Requiere de la configuración de la base de datos
-     */
-    require_once '../../config/conexion.php';
-    /**
-     * Si los compos son enviados desde el formulario entonces los comprueba y los agrega a la base de datos
-     */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Productos</title>
+    <!-- Header & Reqs-->
+    <?php include_once '../../base/header.inc'; ?>
+    <?php require_once '../../base/require.php'; ?>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <?php include_once '../../base/nav.inc'; ?>
+    <!-- Contenido -->
+    <?php 
     if(isset($_POST['id_producto']) && isset($_POST['stock_producto'])){
-        if($_POST['stock_producto'] == 0){
-            die(header('Location:http://localhost/admin/stock/?message=error-db'));
-            exit;
-        }
         $id_producto = $_POST['id_producto'];
         $sql = "SELECT nombre_producto, stock_producto FROM producto WHERE id_producto = '$id_producto'";
         if($resultado = $conexion->query($sql)){
             if($resultado->num_rows>0){
                 $producto = $resultado->fetch_assoc();
-                $stock_atual = $producto['stock_producto'];
+                $stock_actual = $producto['stock_producto'];
                 $stock_entrante = $_POST['stock_producto'];
-                $stock_total = $stock_atual + $stock_entrante;
-                if($stock_total<0){
-                    die(header('Location:http://localhost/admin/stock/?message=stock'));
+                $stock_total = $stock_actual + $stock_entrante;
+                if($stock_total<0 || $stock_entrante == 0){
+                    (new SweetAlertMessages)->error();
                 }else{
                     $sql = "UPDATE producto SET stock_producto = '$stock_total' WHERE id_producto = '$id_producto'";
                     if($resultado = $conexion->query($sql)){
@@ -38,38 +37,23 @@
                         /**
                          * En caso contratio termina la operación con un mensaje de error
                          */
-                        die(header('Location:http://localhost/admin/stock/?message=error-db'));
+                        (new SweetAlertMessages)->error();
                     }
-                    $sql = "INSERT INTO registro_stock VALUES(null, '$id_producto', '$stock_atual', '$stock_entrante', '$stock_total', now())";
+                    $sql = "INSERT INTO registro_stock VALUES(null, '$id_producto', '$stock_actual', '$stock_entrante', '$stock_total', now())";
                     if($resultado = $conexion->query($sql)){
-                        die(header('Location:http://localhost/admin/stock/?message=success'));
+                        (new SweetAlertMessages)->success();
                     }else{
-                        die(header('Location:http://localhost/admin/stock/?message=error-db'));
+                        (new SweetAlertMessages)->error();
                     }
                 }
             }else{
-                die(header('Location:http://localhost/admin/stock/?message=not-found'));
+                (new SweetAlertMessages)->error();
             }
         }else{
-            die(header('Location:http://localhost/admin/stock/?message=error-db'));
+            (new SweetAlertMessages)->error();
         }
     }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Productos</title>
-    <!-- Header -->
-    <?php include_once '../../base/header.inc'; ?>
-</head>
-<body>
-    <!-- SweetAlert -->
-    <?php include_once '../../base/sweetalert.php'; ?>
-    <!-- Barra de Navegación -->
-    <?php include_once '../../base/nav.inc'; ?>
-    <!-- Contenido -->
     <div class="container pt-5">
     <div class="row justify-content-center p-5 border bg-light">
         <div class="col-6 p-0">
@@ -107,10 +91,10 @@
                         </form>
             <?php 
                         else:
-                            die(header('Location:http://localhost/admin/stock/?message=not-found'));
+                            (new SweetAlertMessages)->not_found();
                         endif;
                     else: 
-                        die(header('Location:http://localhost/admin/stock/?message=error-db'));
+                        (new SweetAlertMessages)->error();
                     endif;
                 else: 
                     echo '<h4 class="text-center text-muted">No se ha seleccionado ningun producto</h4>';

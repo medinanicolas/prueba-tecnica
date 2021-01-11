@@ -1,18 +1,24 @@
-<?php 
-    /**
-     * Utiliza la sesion para comprobar privilegios
-     */
-    require_once '../../config/sesion.php';
-    /**
-     * Requiere de la configuración de la base de datos
-     */
-    require_once '../../config/conexion.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrega Productos</title>
+    <!-- Header & Reqs-->
+    <?php include_once '../../base/header.inc'; ?>
+    <?php include_once '../../base/require.php'; ?>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <?php include_once '../../base/nav.inc'; ?>
+    <!-- Contenido -->
+    <?php
     /**
      * Si los compos son enviados desde el formulario entonces los comprueba y los agrega a la base de datos
      */
     if(isset($_POST['id_producto']) && isset($_POST['stock_producto'])){
         if($_POST['stock_producto'] == 0){
-            die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+            (new SweetAlertMessages)->error();
             exit;
         }
         $id_producto = $_POST['id_producto'];
@@ -24,7 +30,7 @@
                 $stock_saliente = $_POST['stock_producto'];
                 $stock_total = $stock_atual - $stock_saliente;
                 if($stock_total<0){
-                    die(header('Location:http://localhost/admin/entregas/?message=stock'));
+                    (new SweetAlertMessages)->custom("Oops..","El stock saliente supera el stock actual","warning");
                 }else{
                     $sql = "UPDATE producto SET stock_producto = '$stock_total' WHERE id_producto = '$id_producto'";
                     if($resultado = $conexion->query($sql)){
@@ -38,38 +44,23 @@
                         /**
                          * En caso contratio termina la operación con un mensaje de error
                          */
-                        die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+                        (new SweetAlertMessages)->error();
                     }
                     $sql = "INSERT INTO registro_entrega VALUES(null, '$id_producto', '$stock_atual', '$stock_saliente', '$stock_total', now())";
                     if($resultado = $conexion->query($sql)){
-                        die(header('Location:http://localhost/admin/entregas/?message=success'));
+                        (new SweetAlertMessages)->success();
                     }else{
-                        die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+                        (new SweetAlertMessages)->error();
                     }
                 }
             }else{
-                die(header('Location:http://localhost/admin/entregas/?message=not-found'));
+                (new SweetAlertMessages)->not_found();
             }
         }else{
-            die(header('Location:http://localhost/admin/entregas/?message=error-db'));
+            (new SweetAlertMessages)->error();
         }
     }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrega Productos</title>
-    <!-- Header -->
-    <?php include_once '../../base/header.inc'; ?>
-</head>
-<body>
-    <!-- SweetAlert -->
-    <?php include_once '../../base/sweetalert.php'; ?>
-    <!-- Barra de Navegación -->
-    <?php include_once '../../base/nav.inc'; ?>
-    <!-- Contenido -->
+    ?>
     <div class="container pt-5">
     <div class="row justify-content-center p-5 border bg-light">
         <div class="col-6 p-0">
@@ -106,11 +97,11 @@
                             <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-box"></i> Actualizar</button>
                             </form>
             <?php
-                            else:
-                                die(header('Location:http://localhost/admin/entregas/?message=not-found'));   
-                            endif;
+                        else:
+                            (new SweetAlertMessages)->not_found($path = '.');
+                        endif;
                     else:
-                        die(header('Location:http://localhost/admin/entregas/?message=error-db'));   
+                        (new SweetAlertMessages)->error($path = '.');  
                     endif;
                 else:
                     echo '<h4 class="text-center text-muted">No se ha seleccionado ningun producto</h4>';

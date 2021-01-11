@@ -12,12 +12,11 @@
     <meta charset="UTF-6">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
-    <!-- Header -->
+    <!-- Header & Reqs-->
     <?php include_once '../../base/header.inc'; ?>
+    <?php require_once '../../base/require.php'; ?>
 </head>
 <body>
-    <!-- Sweetalert -->
-    <?php include_once '../../base/sweetalert.php'; ?>
     <!-- Barra de Navegación -->
     <?php include_once '../../base/nav.inc'; ?>
     <!-- Contenido -->
@@ -102,13 +101,13 @@
                                         JOIN bodega b ON b.id_bodega = p.id_bodega
                                         WHERE p.id_bodega = '$id_bodega'";
                                 if(!$resultado = $conexion->query($sql)){
-                                    die(header('Location:http://localhost/admin/productos/?message=error-db'));
+                                    (new SweetAlertMessages)->error();
                                 }
                             }else{
-                                die(header('Location:http://localhost/admin/productos/?message=not-found'));
+                                (new SweetAlertMessages)->not_found();
                             }
                         }else{
-                            die(header('Location:http://localhost/admin/productos/?message=error-db'));
+                            (new SweetAlertMessages)->error();
                         }
                     }elseif(isset($_POST['bodega']) && $_POST['bodega']==="1"){
                         /**
@@ -127,7 +126,7 @@
                                     JOIN categoria c ON c.id_categoria = p.id_categoria
                                     JOIN bodega b ON b.id_bodega = p.id_bodega";
                         if(!$resultado = $conexion->query($sql)){
-                            die(header('Location:http://localhost/admin/productos/?message=error-db'));
+                            (new SweetAlertMessages)->error();
                         }
                     }elseif(isset($_POST['busqueda_codigo'])){
                         /**
@@ -148,7 +147,7 @@
                                     JOIN bodega b ON b.id_bodega = p.id_bodega
                                     WHERE id_producto = '$id_producto'";
                         if(!$resultado = $conexion->query($sql)){
-                            die(header('Location:http://localhost/admin/productos/?message=error-db'));
+                            (new SweetAlertMessages)->error();
                         }
                     }else{
                         echo "<h4 class='text-muted'>No se ha seleccionado ninguna fuente</h4>";
@@ -224,7 +223,7 @@
                     text:"Se eliminiará el producto y todos sus registros",
                     icon: "question",
                     showCancelButton: true,
-                    cancelbuttonText: "Cancelar",
+                    cancelButtonText: "Cancelar",
                     confirmButtonText: "Eliminar",
                     reverseButtons: true,
                     confirmButtonColor: "#dc3545"

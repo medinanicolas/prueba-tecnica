@@ -1,22 +1,14 @@
-<?php
-/**
- * Sesión para comprobar privilegios
- */
-    session_start();
-    require_once '../../config/sesion.php';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bodegas</title>
-    <!-- Header -->
+    <!-- Header & Reqs-->
     <?php include_once '../../base/header.inc'; ?>
+    <?php require_once '../../base/require.php'; ?>
 </head>
 <body>
-    <!-- Sweetalert -->
-    <?php include_once '../../base/sweetalert.php'; ?>
     <!-- Barra de Navegación -->
     <?php include_once '../../base/nav.inc'; ?>
     <!-- Contenido -->
@@ -36,9 +28,9 @@
                  */
                 $sql = "SELECT * FROM bodega";
                 ?>
-                <?php if(!$resultado = $conexion->query($sql)): ?>
-                    <?php die(header('Location:http://localhost/admin/bodega/?message=error-db')); ?>
-                <?php
+                <?php if(!$resultado = $conexion->query($sql)):
+                    (new SweetAlertMessages)->error();
+                    exit;
                     /**
                      * Si es que encuentra resultados los lista en tabla
                      */
@@ -93,7 +85,7 @@
                     text:"Se eliminiará la bodega con todos sus productos",
                     icon: "question",
                     showCancelButton: true,
-                    cancelbuttonText: "Cancelar",
+                    cancelButtonText: "Cancelar",
                     confirmButtonText: "Eliminar",
                     reverseButtons: true,
                     confirmButtonColor: "#dc3545"

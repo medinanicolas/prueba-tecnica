@@ -1,22 +1,30 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
     /**
-     * Utiliza la sesion para comprobar privilegios
+     * Header
      */
-    session_start();
-    require_once '../../config/sesion.php';
-    /**
-     * Configuración de la base de datos
-     */
-    require_once '../../config/conexion.php';
+    include_once '../../base/header.inc';
+    require_once '../../base/require.php';
     /**
      * Si se ha enviado el ID por GET entonces lo utiliza para eliminar la bodega
      */
     if(isset($_GET['id'])){
         $sql = "DELETE FROM bodega WHERE id_bodega = " . $_GET['id'];
         if($resultado = $conexion->query($sql)){
-            die(header('Location:http://localhost/admin/bodega/?message=success'));
+            (new SweetAlertMessages)->success($path = '.');
+            exit;
         }else{
-            die(header('Location:http://localhost/admin/bodega/?message=error-db'));
+            (new SweetAlertMessages)->error($path = '.');
+            exit;
         }
     }
 ?>
+</body>
+</html>

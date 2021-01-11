@@ -1,12 +1,18 @@
-<?php 
-    /**
-     * Utiliza la sesion para comprobar privilegios
-     */
-    require_once '../../config/sesion.php';
-    /**
-     * Requiere de la configuración de la base de datos
-     */
-    require_once '../../config/conexion.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Producto</title>
+    <!-- Header & Reqs-->
+    <?php include_once '../../base/header.inc'; ?>
+    <?php require_once '../../base/require.php'; ?>
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <?php include_once '../../base/nav.inc'; ?>
+    <!-- Contenido -->
+ <?php
     /**
      * Si los compos son enviados desde el formulario entonces los comprueba y los agrega a la base de datos
      */
@@ -41,30 +47,17 @@
              * que será interceptado por 'sweetalert.php', el que enviará una alerta 
              * con el mensaje correspondiente
              */
-            die(header('Location:http://localhost/admin/productos/?message=success'));
+            (new SweetAlertMessages)->success('.');
         }else{
             /**
              * En caso contratio termina la operación con un mensaje de error
              */
-            die(header('Location:http://localhost/admin/productos/?message=error'));
+            (new SweetAlertMessages)->error('.');
         }
     }else{
         echo "No se ha ingresado ningun parametro válido";
     }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Producto</title>
-    <!-- Header -->
-    <?php include_once '../../base/header.inc'; ?>
-</head>
-<body>
-    <!-- Barra de Navegación -->
-    <?php include_once '../../base/nav.inc'; ?>
-    <!-- Contenido -->
     <div class="container pt-5">
     <div class="row justify-content-center p-5 border bg-light">
         <div class="col-6 p-0">
@@ -103,7 +96,7 @@
                                         }
                                     }
                                 }else{
-                                    die(header('Location:http://localhost/admin/productos/?message=error'));
+                                    (new SweetAlertMessages)->error();
                                 }
                                 echo '</select>';
 
@@ -134,7 +127,7 @@
                                         }
                                     }
                                 }else{
-                                    die(header('Location:http://localhost/admin/productos/?message=error'));
+                                    (new SweetAlertMessages)->error('.');
                                 }
                                 echo "</select>";
                                 echo '<label for="categoria_producto">Categoría Producto:</label>';
@@ -155,7 +148,7 @@
                                         }
                                     }
                                 }else{
-                                    die(header('Location:http://localhost/admin/productos/?message=error'));
+                                    (new SweetAlertMessages)->error('.');
                                 }
                                 echo '</select>';
 
@@ -166,10 +159,10 @@
                                     <a class="text-light btn btn-danger mt-3 float-left" href="http://localhost/admin/productos/"
                                     ><i class="fas fa-window-close"></i> Cancelar</a>';
                             }else{
-                                die(header('Location:http://localhost/admin/productos/?message=not-found'));    
+                                (new SweetAlertMessages)->not_found('.');   
                             }
                         }else{
-                            die(header('Location:http://localhost/admin/productos/?message=error'));
+                            (new SweetAlertMessages)->error('.');
                         }
                     }
                 ?>
