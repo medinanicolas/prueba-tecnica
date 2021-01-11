@@ -59,20 +59,26 @@
                     $id_bodega = $_GET['id'];
                     $sql = "SELECT * FROM bodega WHERE id_bodega = '$id_bodega'";
                     if($resultado = $conexion->query($sql)){
-                        if($resultado->num_rows>0){
+                        if($resultado->num_rows>0):
                             $bodega = $resultado->fetch_assoc();
+            ?>
                             
-                            echo '<label for="id_bodega">Código Bodega:</label>';
-                            echo '<input type="text" class="form-control" readonly value="'.$bodega['id_bodega'].'" name="id_bodega">';
+                            <label for="id_bodega">Código Bodega:</label>
+                            <?php
+                                echo '<input type="text" class="form-control" readonly value="'.$bodega['id_bodega'].'" name="id_bodega">';
+                            ?>
 
-                            echo '<label for="nombre_bodega">Nombre Bodega:</label>';
-                            echo '<input type="text" class="form-control" value="'.$bodega['nombre_bodega'].'" name="nombre_bodega">';
+                            <label for="nombre_bodega">Nombre Bodega:</label>
+                            <?php
+                                echo '<input type="text" class="form-control" value="'.$bodega['nombre_bodega'].'" name="nombre_bodega">';
+                            ?>
 
-                            echo '<label for="direccion_bodega">Dirección Bodega:</label>';
-                            echo '<input type="text" class="form-control" value="'.$bodega['direccion_bodega'].'" name="direccion_bodega">';
-                            }else{
-                                die(header('Location:http://localhost/admin/bodega/?message=error-db'));
-                            }
+                            <label for="direccion_bodega">Dirección Bodega:</label>
+                            <?php
+                                echo '<input type="text" class="form-control" value="'.$bodega['direccion_bodega'].'" name="direccion_bodega">';
+                        else:
+                            die(header('Location:http://localhost/admin/bodega/?message=error-db'));
+                        endif;
                         }
                     }else{
                         die(header('Location:http://localhost/admin/bodega/?message=error-db'));

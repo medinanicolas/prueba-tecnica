@@ -21,28 +21,30 @@
     <?php include_once '../../base/nav.inc'; ?>
     <!-- Contenido -->
     <div class="container pt-5">
-    <div class="row justify-content-center p-5 bg-light">
-        <div class="col-12 p-0">
-            <h1 class="text-center mb-5">Bodegas</h1>
-            <!-- Ejemplo de boton con integración de FontAwesome -->
-            <a class="btn btn-success my-2" href="http://localhost/admin/bodega/agregar_bodega.php"><i class="fas fa-plus-circle"></i> Agregar</a>
-            <?php 
-            /**
-             * Configuración SQL
-             */
-            require_once '../../config/conexion.php';
-            /**
-             * Busca bodegas existentes
-             */
-            $sql = "SELECT * FROM bodega";
-            if(!$resultado = $conexion->query($sql)){
-                die(header('Location:http://localhost/admin/bodega/?message=error-db'));
-            }else{
+        <div class="row justify-content-center p-5 bg-light">
+            <div class="col-12 p-0">
+                <h1 class="text-center mb-5">Bodegas</h1>
+                <!-- Ejemplo de boton con integración de FontAwesome -->
+                <a class="btn btn-success my-2" href="http://localhost/admin/bodega/agregar_bodega.php"><i class="fas fa-plus-circle"></i> Agregar</a>
+                <?php 
                 /**
-                 * Si es que encuentra resultados los lista en tabla
+                 * Configuración SQL
                  */
-                if($resultado->num_rows > 0){
-                    echo '<table class="table table-striped table-hover">
+                require_once '../../config/conexion.php';
+                /**
+                 * Busca bodegas existentes
+                 */
+                $sql = "SELECT * FROM bodega";
+                ?>
+                <?php if(!$resultado = $conexion->query($sql)): ?>
+                    <?php die(header('Location:http://localhost/admin/bodega/?message=error-db')); ?>
+                <?php
+                    /**
+                     * Si es que encuentra resultados los lista en tabla
+                     */
+                    else: ?>
+                    <?php if($resultado->num_rows > 0):?>
+                        <table class="table table-striped table-hover">
                         <thead class="thead-dark">
                         <tr">
                             <th class="text-center" scope="col">Codigo</th>
@@ -51,36 +53,36 @@
                             <th class="text-center" cope="col">Acción</th>
                         </tr>
                         </thead>
-                        ';
-                    echo "<tbody>";
-                    while($bodega = $resultado->fetch_assoc()){
-                           echo "<tr>
-                            <th class='text-center' scope='row'>" . $bodega['id_bodega'] . "</th>
-                            <td class='text-center'>" . $bodega['nombre_bodega'] . "</td>
-                            <td class='text-center'>" . $bodega['direccion_bodega'] . "</td>
-                            <td class='text-center'>
-                                <a onclick=eliminarBodega(". $bodega['id_bodega'] .") class='btn btn-danger text-white' href='#'>
-                                    <i class='fas fa-trash'></i>
-                                </a>
-                                <a class='btn btn-warning text-white' href='./modificar_bodega.php?id=". $bodega['id_bodega']."'
-                                    ><i class='fas fa-edit'></i></a>
-                            </td>
-                            </tr>
-                            ";
-                    }
-                    echo "</tbody>
-                        </table>
-                        ";
-                }else{
-                    /**
-                     * De lo contrario informa de la no existencia de bodegas
-                     */
-                    echo "<h6 class='text-muted'>No se han encontrado resultados</h6>";
-                }
-            }
-            ?>
-    </div>
-    </div>
+                        <tbody>
+                    <?php
+                        while($bodega = $resultado->fetch_assoc()){
+                            echo "<tr>
+                                <th class='text-center' scope='row'>" . $bodega['id_bodega'] . "</th>
+                                <td class='text-center'>" . $bodega['nombre_bodega'] . "</td>
+                                <td class='text-center'>" . $bodega['direccion_bodega'] . "</td>
+                                <td class='text-center'>
+                                    <a onclick=eliminarBodega(". $bodega['id_bodega'] .") class='btn btn-danger text-white' href='#'>
+                                        <i class='fas fa-trash'></i>
+                                    </a>
+                                    <a class='btn btn-warning text-white' href='./modificar_bodega.php?id=". $bodega['id_bodega']."'
+                                        ><i class='fas fa-edit'></i></a>
+                                </td>
+                                </tr>";
+                        }
+                        echo    "</tbody>
+                                </table>";
+                    ?>
+                    <?php
+                        /**
+                         * De lo contrario informa de la no existencia de bodegas
+                         */
+                        else: ?>
+                        
+                        <h6 class='text-muted'>No se han encontrado resultados</h6>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
     <!-- Footer -->
     <?php include_once '../../base/footer.inc'; ?>

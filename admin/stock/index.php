@@ -75,54 +75,60 @@
         <div class="col-6 p-0">
             <h1 class="text-center">STOCK PRODUCTOS</h1>
             <!-- Formulario POST para agregar categorias -->
-            <?php
-                if(isset($_GET['id'])){
+            <?php 
+                if(isset($_GET['id'])): 
                     $id = $_GET['id'];
                     /**
                      * Comprueba que exista el id indicado
                      */
                     $sql = "SELECT id_producto, stock_producto FROM producto WHERE id_producto = '$id'";
-                    if($resultado = $conexion->query($sql)){
-                        if($resultado->num_rows>0){
-                                $producto = $resultado->fetch_assoc();
-                            $stock = $producto['stock_producto'];
-                            echo '<form action="." method="POST" enctype="application/x-www-form-urlencoded">';
+                    if($resultado = $conexion->query($sql)):
+                        if($resultado->num_rows>0):
+                        $producto = $resultado->fetch_assoc();
+                        $stock = $producto['stock_producto'];
+            ?>
+                        <form action="." method="POST" enctype="application/x-www-form-urlencoded">
 
-                            echo '<label for="id_producto">Código Producto:</label>';
+                        <label for="id_producto">Código Producto:</label>
 
+                        <?php
                             echo '<input type="text" class="form-control" value="'.$id.'" name="id_producto" readonly>';
+                        ?>
 
-                            echo '<label>Stock Actual:</label>';
+                        <label>Stock Actual:</label>
+                        <?php 
                             echo '<input readonly type="text" class="form-control" value="'.$stock.'">';
+                        ?>
 
-                            echo '<label for="stock_producto">Stock Entrante:</label>';
-                            echo '<input type="text" class="form-control" placeholder="ej. 1000" name="stock_producto">';
+                        <label for="stock_producto">Stock Entrante:</label>
+                        <input type="text" class="form-control" placeholder="ej. 1000" name="stock_producto">
 
-                            echo '<button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-box"></i> Actualizar</button>';
-                            echo '</form>';
-                        }else{
-                            die(header('Location:http://localhost/admin/stock/?message=not-found'));   
-                        }
-                        
-                    }else{
-                        die(header('Location:http://localhost/admin/stock/?message=error-db'));   
-                    }
-                }else{
+                        <button type="submit" class="text-light btn btn-success mt-3 float-right"><i class="fas fa-box"></i> Actualizar</button>
+                        </form>
+            <?php 
+                        else:
+                            die(header('Location:http://localhost/admin/stock/?message=not-found'));
+                        endif;
+                    else: 
+                        die(header('Location:http://localhost/admin/stock/?message=error-db'));
+                    endif;
+                else: 
                     echo '<h4 class="text-center text-muted">No se ha seleccionado ningun producto</h4>';
-                }
+                endif;
             ?>
         </div>
     </div>
     <?php 
-    /**
-     * Lista los registros, de no haber entonces no inserta código
-     */
-    $sql = "SELECT * FROM registro_stock";
-    if($resultado = $conexion->query($sql)){
-        if($resultado->num_rows>0){
-            echo '<div class="row justify-content-center p-5 border bg-light">';
-            echo '<div class="col-12 p-0 mt-3">';
-            echo '<table class="table table-striped table-hover">
+        /**
+         * Lista los registros, de no haber entonces no inserta código
+         */
+        $sql = "SELECT * FROM registro_stock";
+        if($resultado = $conexion->query($sql)):
+            if($resultado->num_rows>0):
+    ?>
+            <div class="row justify-content-center p-5 border bg-light">
+            <div class="col-12 p-0 mt-3">
+            <table class="table table-striped table-hover">
                 <thead class="thead-dark">
                 <tr">
                     <th class="text-center" scope="col">Registro</th>
@@ -133,8 +139,8 @@
                     <th class="text-center" scope="col">Fecha Registro</th>
                 </tr>
                 </thead>
-                ';
-            echo "<tbody>";
+            <tbody>
+    <?php
             while($registro = $resultado->fetch_assoc()){
                 echo "<tr>
                     <th class='text-center' scope='row'>" . $registro['id_registro'] . "</th>
@@ -146,13 +152,12 @@
                     </tr>
                     ";
             }
-            echo "</tbody>
-                </table>
-                ";
-            echo '</div>';
-            echo '</div>"';
-        }
-    }
+            echo    "</tbody>
+                    </table>";
+            echo    '</div>';
+            echo    '</div>"';
+            endif;
+        endif;
     ?>
     </div>
     <!-- Footer -->
